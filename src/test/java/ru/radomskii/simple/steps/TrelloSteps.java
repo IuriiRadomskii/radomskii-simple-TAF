@@ -1,14 +1,16 @@
 package ru.radomskii.simple.steps;
 
-import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.radomskii.simple.pages.TrelloMainPage;
 
-public class TrelloSteps extends BaseSteps {
+@Component
+public class TrelloSteps {
 
-    public TrelloSteps(WebDriver driver) {
-        super(driver);
-    }
+    @Autowired
+    private TrelloMainPage trelloMainPage;
 
     public void openTrello() {
-        driver.get("https://trello.com/ru");
+        trelloMainPage.openTrello();
     }
 }
