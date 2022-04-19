@@ -36,13 +36,7 @@ public class WebDriverWrapper implements WebDriver {
 
     @Override
     public String getTitle() {
-        log.info("Getting page title");
-        long startTime = System.currentTimeMillis();
-        try {
-            return driver.getTitle();
-        } finally {
-            log.info(LOG_TEMPLATE, "Get title", getTimeDifference(startTime), driver.getCurrentUrl());
-        }
+        return driver.getTitle();
     }
 
     @Override
@@ -57,17 +51,23 @@ public class WebDriverWrapper implements WebDriver {
 
     @Override
     public String getPageSource() {
-        return null;
+        return driver.getPageSource();
     }
 
     @Override
     public void close() {
-
+        log.debug("Closing browser ...");
+        long startTime = System.currentTimeMillis();
+        try {
+            driver.quit();
+        } finally {
+            log.info(LOG_TEMPLATE, "Close driver", getTimeDifference(startTime));
+        }
     }
 
     @Override
     public void quit() {
-        log.info("Quiting driver ...");
+        log.debug("Quiting driver ...");
         long startTime = System.currentTimeMillis();
         try {
             driver.quit();
@@ -78,27 +78,27 @@ public class WebDriverWrapper implements WebDriver {
 
     @Override
     public Set<String> getWindowHandles() {
-        return null;
+        return driver.getWindowHandles();
     }
 
     @Override
     public String getWindowHandle() {
-        return null;
+        return driver.getWindowHandle();
     }
 
     @Override
     public TargetLocator switchTo() {
-        return null;
+        return driver.switchTo();
     }
 
     @Override
     public Navigation navigate() {
-        return null;
+        return driver.navigate();
     }
 
     @Override
     public Options manage() {
-        return null;
+        return driver.manage();
     }
 
     private String getTimeDifference(long startTime) {
