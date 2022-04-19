@@ -10,9 +10,11 @@ import org.radomskii.simple.driver.WebDriverWrapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Slf4j
 @Configuration
+@PropertySource("classpath:browser.properties")
 public class WebDriverConfig {
 
     @Value("browser")
@@ -20,20 +22,23 @@ public class WebDriverConfig {
 
     @Bean
     public WebDriverWrapper webDriverWrapper() {
-        switch (browserName) {
+        log.info("Starting initializing CHROME");
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+        return new WebDriverWrapper(driver);
+
+        /*switch (browserName) {
             case ("chrome"):
                 log.info("Chrome driver provided");
-                initChromeDriver();
-                break;
+                return initChromeDriver();
             case ("firefox"):
                 log.info("Firefox driver provided");
-                initFirefoxDriver();
-                break;
+                return initFirefoxDriver();
             default:
                 log.info("Default driver provided");
-                initChromeDriver();
-        }
-        return null;
+                return initChromeDriver();
+        }*/
     }
 
     private WebDriverWrapper initChromeDriver() {

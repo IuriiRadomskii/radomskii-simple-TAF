@@ -1,8 +1,8 @@
-package ru.radomskii.simple.steps;
+package org.radomskii.simple.steps;
 
+import org.radomskii.simple.pages.TrelloMainPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.radomskii.simple.pages.TrelloMainPage;
 
 @Component
 public class TrelloSteps {

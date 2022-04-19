@@ -31,12 +31,18 @@ public class WebDriverWrapper implements WebDriver {
 
     @Override
     public String getCurrentUrl() {
-        return null;
+        return driver.getCurrentUrl();
     }
 
     @Override
     public String getTitle() {
-        return null;
+        log.info("Getting page title");
+        long startTime = System.currentTimeMillis();
+        try {
+            return driver.getTitle();
+        } finally {
+            log.info(LOG_TEMPLATE, "Get title", getTimeDifference(startTime), driver.getCurrentUrl());
+        }
     }
 
     @Override
@@ -61,7 +67,13 @@ public class WebDriverWrapper implements WebDriver {
 
     @Override
     public void quit() {
-
+        log.info("Quiting driver ...");
+        long startTime = System.currentTimeMillis();
+        try {
+            driver.quit();
+        } finally {
+            log.info(LOG_TEMPLATE, "Quit driver", getTimeDifference(startTime));
+        }
     }
 
     @Override
