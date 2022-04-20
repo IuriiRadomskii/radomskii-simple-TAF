@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 public class TrelloMainPage extends BasePage {
 
     public void openTrello() {
-        log.info("Opening https://trello.com ...");
         driverWrapper.get("https://trello.com");
     }
 }

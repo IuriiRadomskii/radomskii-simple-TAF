@@ -7,7 +7,7 @@ import org.radomskii.simple.config.TestConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 @SpringJUnitConfig(classes = TestConfig.class)
-public class SimpleTests extends BaseTest {
+public class SimpleApiTests extends BaseTest {
 
     @Test
     public void trelloTitleTest() {
@@ -20,4 +20,6 @@ public class SimpleTests extends BaseTest {
         trelloSteps.openTrello();
         assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Trello");
     }
+
 }
+

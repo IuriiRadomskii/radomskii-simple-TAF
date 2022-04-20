@@ -1,14 +1,13 @@
-/*
-package ru.radomskii.simple.tests;
+package org.radomskii.simple.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import ru.radomskii.simple.config.TestConfig;
-import org.springframework.test.context.ContextConfiguration;
+import org.radomskii.simple.config.TestConfig;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@ContextConfiguration(classes = TestConfig.class)
-public class AnotherSimpleTests extends BaseTest {
+@SpringJUnitConfig(classes = TestConfig.class)
+public class SimpleUiTests extends BaseTest {
 
     @Test
     public void trelloTitleTest() {
@@ -19,8 +18,6 @@ public class AnotherSimpleTests extends BaseTest {
     @Test
     public void trelloFailedTitleTest() {
         trelloSteps.openTrello();
-        assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Trellooo");
+        assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Trello");
     }
-
 }
-*/

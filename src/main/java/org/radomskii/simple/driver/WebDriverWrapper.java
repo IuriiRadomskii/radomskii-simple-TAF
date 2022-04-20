@@ -2,6 +2,7 @@ package org.radomskii.simple.driver;
 
 import java.util.List;
 import java.util.Set;
+import javax.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -16,7 +17,7 @@ public class WebDriverWrapper implements WebDriver {
 
     private static final String LOG_TEMPLATE = "Action: {}; Execution time: {}; Page: {}; Find by: {}";
 
-    private WebDriver driver;
+    public WebDriver driver;
 
     @Override
     public void get(String url) {
@@ -56,7 +57,7 @@ public class WebDriverWrapper implements WebDriver {
 
     @Override
     public void close() {
-        log.debug("Closing browser ...");
+        log.info("Closing browser ... " + driver.toString());
         long startTime = System.currentTimeMillis();
         try {
             driver.quit();
@@ -67,7 +68,7 @@ public class WebDriverWrapper implements WebDriver {
 
     @Override
     public void quit() {
-        log.debug("Quiting driver ...");
+        log.info("Quiting driver ... " + driver.toString());
         long startTime = System.currentTimeMillis();
         try {
             driver.quit();
