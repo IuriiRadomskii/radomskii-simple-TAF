@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @SpringJUnitConfig(classes = TestConfig.class)
 public class SimpleApiTests extends BaseTest {
 
-    @Test
+    /*@Test
     public void trelloTitleTest() {
         trelloSteps.openTrello();
         assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Trello");
@@ -19,7 +19,7 @@ public class SimpleApiTests extends BaseTest {
     public void trelloFailedTitleTest() {
         trelloSteps.openTrello();
         assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Trello");
-    }
+    }*/
 
 }
 

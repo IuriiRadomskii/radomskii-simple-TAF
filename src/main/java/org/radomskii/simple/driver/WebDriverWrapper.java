@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +18,8 @@ public class WebDriverWrapper implements WebDriver {
 
     private static final String LOG_TEMPLATE = "Action: {}; Execution time: {}; Page: {}; Find by: {}";
 
-    public WebDriver driver;
+    @Getter
+    private WebDriver driver;
 
     @Override
     public void get(String url) {
@@ -105,4 +107,5 @@ public class WebDriverWrapper implements WebDriver {
     private String getTimeDifference(long startTime) {
         return String.valueOf(System.currentTimeMillis() - startTime);
     }
+
 }

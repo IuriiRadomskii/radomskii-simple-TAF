@@ -12,12 +12,14 @@ public class SimpleUiTests extends BaseTest {
     @Test
     public void trelloTitleTest() {
         trelloSteps.openTrello();
+        trelloSteps.loginOn();
         assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Trello");
     }
 
     @Test
     public void trelloFailedTitleTest() {
         trelloSteps.openTrello();
+        trelloSteps.loginOn();
         assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Trello");
     }
 }

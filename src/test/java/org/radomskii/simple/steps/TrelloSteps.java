@@ -1,16 +1,17 @@
 package org.radomskii.simple.steps;
 
-import org.radomskii.simple.pages.TrelloMainPage;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+@Lazy
 @Component
-public class TrelloSteps {
-
-    @Autowired
-    private TrelloMainPage trelloMainPage;
+public class TrelloSteps extends BaseStep {
 
     public void openTrello() {
-        trelloMainPage.openTrello();
+        trelloLoginPage.openTrello();
+    }
+
+    public void loginOn() {
+        trelloLoginPage.loginOn();
     }
 }
