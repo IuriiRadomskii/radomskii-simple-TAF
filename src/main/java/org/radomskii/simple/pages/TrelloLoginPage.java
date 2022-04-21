@@ -43,7 +43,7 @@ public class TrelloLoginPage extends BasePage {
     public void loginOn() {
         loginOnTrelloButton.click();
         useSsoButton.click();
-        userNameInput.sendKeys(""); //TODO Add password and username injections
+        userNameInput.sendKeys("");
         loginWithAtlassianButton.click();
         passwordInput.sendKeys("");
         loginButton.click();
