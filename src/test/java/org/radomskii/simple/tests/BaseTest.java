@@ -16,6 +16,7 @@ import org.springframework.test.annotation.DirtiesContext;
 public class BaseTest {
 
     @Autowired
+    @Lazy
     protected WebDriverWrapper driverWrapper;
 
     @Lazy
@@ -24,7 +25,7 @@ public class BaseTest {
 
     @AfterAll
     public void tearDown() {
-        log.info("Tearing down in @AfterAll" + driverWrapper.getDriver().toString());
+        log.info("Tearing down in @AfterAll");
         driverWrapper.quit();
     }
 

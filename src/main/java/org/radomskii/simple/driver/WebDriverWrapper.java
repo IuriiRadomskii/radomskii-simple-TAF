@@ -2,33 +2,36 @@ package org.radomskii.simple.driver;
 
 import java.util.List;
 import java.util.Set;
-import javax.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @AllArgsConstructor
+@Lazy
 @Component
 public class WebDriverWrapper implements WebDriver {
 
-    private static final String LOG_TEMPLATE = "Action: {}; Execution time: {}; Page: {}; Find by: {}";
+    private static final String LOG_TEMPLATE_1 = "{}; Execution time: {}; Page: {};";
+    private static final String LOG_TEMPLATE_2 = "Find element: {}; Execution time: {}; Page: {};";
+    private static final String LOG_TEMPLATE_3 = "Find elements: {}; Execution time: {}; Page: {};";
 
     @Getter
     private WebDriver driver;
 
     @Override
     public void get(String url) {
-        log.info("Opening url: " + url);
+        log.debug("Opening url: " + url);
         long startTime = System.currentTimeMillis();
         try {
             driver.get(url);
         } finally {
-            log.info(LOG_TEMPLATE, "Open page", getTimeDifference(startTime), url);
+            log.info(LOG_TEMPLATE_1, "Open page", getTimeDifference(startTime), url);
         }
     }
 
@@ -44,12 +47,24 @@ public class WebDriverWrapper implements WebDriver {
 
     @Override
     public List<WebElement> findElements(By by) {
-        return null;
+        log.debug("Finding elements: " + by);
+        long startTime = System.currentTimeMillis();
+        try {
+            return driver.findElements(by);
+        } finally {
+            log.info(LOG_TEMPLATE_3, by, getTimeDifference(startTime), getCurrentUrl());
+        }
     }
 
     @Override
     public WebElement findElement(By by) {
-        return null;
+        log.debug("Finding element: " + by);
+        long startTime = System.currentTimeMillis();
+        try {
+            return driver.findElement(by);
+        } finally {
+            log.info(LOG_TEMPLATE_2, by, getTimeDifference(startTime), getCurrentUrl());
+        }
     }
 
     @Override
@@ -59,23 +74,23 @@ public class WebDriverWrapper implements WebDriver {
 
     @Override
     public void close() {
-        log.info("Closing browser ... " + driver.toString());
+        log.debug("Closing browser ... " + driver.toString());
         long startTime = System.currentTimeMillis();
         try {
             driver.quit();
         } finally {
-            log.info(LOG_TEMPLATE, "Close driver", getTimeDifference(startTime));
+            log.info(LOG_TEMPLATE_1, "Close driver", getTimeDifference(startTime));
         }
     }
 
     @Override
     public void quit() {
-        log.info("Quiting driver ... " + driver.toString());
+        log.debug("Quiting driver ... " + driver.toString());
         long startTime = System.currentTimeMillis();
         try {
             driver.quit();
         } finally {
-            log.info(LOG_TEMPLATE, "Quit driver", getTimeDifference(startTime));
+            log.info(LOG_TEMPLATE_1, "Quit driver", getTimeDifference(startTime));
         }
     }
 
@@ -107,5 +122,4 @@ public class WebDriverWrapper implements WebDriver {
     private String getTimeDifference(long startTime) {
         return String.valueOf(System.currentTimeMillis() - startTime);
     }
-
 }

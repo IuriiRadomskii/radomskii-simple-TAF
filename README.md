@@ -1,11 +1,14 @@
 # simple-TAF
 
 RoadMap:
-1. Описать главную страницу трелло
-2. Настроить драйвер - ready
-3. Настроить ранер - ready
-4. Написать отладочный сценарий - ready
-5. Первичный запуск - ready
-6. Добавить логи - ready
-7. Отладка логирования - ready
-8. Следующий релиз: Запуск тестов на трелло...
+###v1.0
+1. Describe login page
+2. Add driver
+3. Add runner
+4. Write simple debug scenario
+5. First run
+6. Add simple logs
+7. Debug logs
+###v1.1
+1. Add logging to find by methods
+2. Add JS helper

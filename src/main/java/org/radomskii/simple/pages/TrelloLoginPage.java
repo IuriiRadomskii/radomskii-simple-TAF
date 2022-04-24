@@ -33,7 +33,7 @@ public class TrelloLoginPage extends BasePage {
 
     @PostConstruct
     private void init() {
-        PageFactory.initElements(driverWrapper.getDriver(), this);
+        PageFactory.initElements(driverWrapper, this);
     }
 
     public void openTrello() {
@@ -43,9 +43,9 @@ public class TrelloLoginPage extends BasePage {
     public void loginOn() {
         loginOnTrelloButton.click();
         useSsoButton.click();
-        userNameInput.sendKeys("");
+        userNameInput.sendKeys("ur4r4d0msky@yandex.ru");
         loginWithAtlassianButton.click();
-        passwordInput.sendKeys("");
+        passwordInput.sendKeys("375054916");
         loginButton.click();
     }
 }

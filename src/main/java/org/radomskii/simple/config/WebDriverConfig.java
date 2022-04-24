@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.Environment;
@@ -34,6 +35,7 @@ public class WebDriverConfig {
     private Environment env;
 
     @Bean
+    @Lazy
     public WebDriverWrapper webDriverWrapper() {
         switch (browserName) {
             case ("chrome"):
@@ -56,7 +58,8 @@ public class WebDriverConfig {
             "--start-maximized");
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return new WebDriverWrapper(driver);
     }
 
