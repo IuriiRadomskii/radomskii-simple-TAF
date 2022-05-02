@@ -8,10 +8,13 @@ import org.springframework.stereotype.Component;
 public class TrelloSteps extends BaseStep {
 
     public void openTrello() {
-        trelloLoginPage.openTrello();
+        trelloStartPage.openTrello();
+
     }
 
     public void loginOn() {
-        trelloLoginPage.loginOn();
+        trelloStartPage.clickLogInButton();
+        trelloLoginPage.sendUserName();
+        atlassianLoginPage.sendPassword();
     }
 }

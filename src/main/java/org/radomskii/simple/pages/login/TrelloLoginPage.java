@@ -1,10 +1,13 @@
-package org.radomskii.simple.pages;
+package org.radomskii.simple.pages.login;
 
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.UsernameAndPassword;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.radomskii.simple.pages.BasePage;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class TrelloLoginPage extends BasePage {
 
-    @FindBy(xpath = "//a[@href='/login']")
-    private WebElement loginOnTrelloButton;
-
-    @FindBy(id = "use-sso-button")
-    private WebElement useSsoButton;
+    @Value("${trello.user.name}")
+    private String USERNAME;
 
     @FindBy(id = "user")
     private WebElement userNameInput;
@@ -25,27 +25,16 @@ public class TrelloLoginPage extends BasePage {
     @FindBy(id = "login")
     private WebElement loginWithAtlassianButton;
 
-    @FindBy(id = "password")
-    private WebElement passwordInput;
-
-    @FindBy(id = "login-submit")
-    private WebElement loginButton;
-
     @PostConstruct
     private void init() {
         PageFactory.initElements(driverWrapper, this);
     }
 
-    public void openTrello() {
-        driverWrapper.get("https://trello.com");
+    public void sendUserName() {
+        userNameInput.sendKeys(USERNAME);
+        driverHelper.waitForPageIsCompletelyLoaded();
+        loginWithAtlassianButton.click();
+        driverHelper.waitForConcretePageTitle("Log in to continue - Log in with Atlassian account");
     }
 
-    public void loginOn() {
-        loginOnTrelloButton.click();
-        useSsoButton.click();
-        userNameInput.sendKeys("ur4r4d0msky@yandex.ru");
-        loginWithAtlassianButton.click();
-        passwordInput.sendKeys("375054916");
-        loginButton.click();
-    }
 }

@@ -2,7 +2,6 @@ package org.radomskii.simple.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
 import org.radomskii.simple.config.TestConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 

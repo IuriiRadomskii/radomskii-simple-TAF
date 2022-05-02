@@ -1,5 +1,6 @@
-package org.radomskii.simple.driver;
+package org.radomskii.simple.webdriver.driver;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -61,7 +63,10 @@ public class WebDriverWrapper implements WebDriver {
         log.debug("Finding element: " + by);
         long startTime = System.currentTimeMillis();
         try {
-            return driver.findElement(by);
+            return new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofMillis(500))
+                .until(driver -> driver.findElement(by));
         } finally {
             log.info(LOG_TEMPLATE_2, by, getTimeDifference(startTime), getCurrentUrl());
         }
