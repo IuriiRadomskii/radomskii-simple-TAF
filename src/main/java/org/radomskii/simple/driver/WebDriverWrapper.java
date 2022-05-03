@@ -1,4 +1,4 @@
-package org.radomskii.simple.webdriver.driver;
+package org.radomskii.simple.driver;
 
 import java.time.Duration;
 import java.util.List;

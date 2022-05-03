@@ -5,7 +5,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.radomskii.simple.webdriver.driver.WebDriverWrapper;
+import org.radomskii.simple.driver.WebDriverWrapper;
 import org.radomskii.simple.steps.TrelloSteps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;

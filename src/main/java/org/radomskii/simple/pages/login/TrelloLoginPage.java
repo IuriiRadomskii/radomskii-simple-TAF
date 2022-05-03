@@ -16,9 +16,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class TrelloLoginPage extends BasePage {
 
-    @Value("${trello.user.name}")
-    private String USERNAME;
-
     @FindBy(id = "user")
     private WebElement userNameInput;
 
@@ -31,7 +28,7 @@ public class TrelloLoginPage extends BasePage {
     }
 
     public void sendUserName() {
-        userNameInput.sendKeys(USERNAME);
+        userNameInput.sendKeys(env.getProperty("trello.username"));
         driverHelper.waitForPageIsCompletelyLoaded();
         loginWithAtlassianButton.click();
         driverHelper.waitForConcretePageTitle("Log in to continue - Log in with Atlassian account");

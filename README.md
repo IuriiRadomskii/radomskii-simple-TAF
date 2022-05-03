@@ -12,3 +12,5 @@ RoadMap:
 ###v1.1
 1. Add logging to find by methods
 2. Add JS helper
+###v1.11
+1. Add credentials injection through command line arguments 

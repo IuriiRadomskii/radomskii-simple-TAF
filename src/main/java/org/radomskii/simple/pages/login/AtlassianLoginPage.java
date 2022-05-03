@@ -15,9 +15,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class AtlassianLoginPage extends BasePage {
 
-    @Value("${trello.user.password}")
-    private String PASSWORD;
-
     @FindBy(id = "password")
     private WebElement passwordInput;
 
@@ -30,7 +27,7 @@ public class AtlassianLoginPage extends BasePage {
     }
 
     public void sendPassword() {
-        passwordInput.sendKeys(PASSWORD);
+        passwordInput.sendKeys(env.getProperty("trello.password"));
         submitButton.click();
         driverHelper.waitForConcretePageTitle("Boards | Trello");
     }
