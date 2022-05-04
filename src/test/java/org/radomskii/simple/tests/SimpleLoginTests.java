@@ -19,10 +19,10 @@ public class SimpleLoginTests extends BaseTest {
         assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Boards | Trello");
     }
 
-    @Test
-    public void negativeLoginTest() {
-        steps.openTrello();
-        steps.loginOn();
-        assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Boards | Trello");
-    }
+    //@Test
+    //public void negativeLoginTest() {
+    //    steps.openTrello();
+    //    steps.loginOn();
+    //    assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Boards | Trello");
+    //}
 }

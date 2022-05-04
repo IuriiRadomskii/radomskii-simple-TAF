@@ -17,4 +17,8 @@ public class TrelloSteps extends BaseStep {
         trelloLoginPage.sendUserName();
         atlassianLoginPage.sendPassword();
     }
+
+    public String getCookie() {
+        return "";
+    }
 }

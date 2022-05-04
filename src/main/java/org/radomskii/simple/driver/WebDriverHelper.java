@@ -2,13 +2,17 @@ package org.radomskii.simple.driver;
 
 import java.time.Duration;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+@Lazy
 @Component
 @Slf4j
 public class WebDriverHelper {
@@ -20,7 +24,7 @@ public class WebDriverHelper {
     @Lazy
     private WebDriverWrapper driverWrapper;
 
-    public void waitForPageIsCompletelyLoaded() {
+    public void waitForPageIsLoaded() {
         long startTime = System.currentTimeMillis();
         try {
             new FluentWait<>(driverWrapper.getDriver())
@@ -31,7 +35,7 @@ public class WebDriverHelper {
                     return js.executeScript("return document.readyState").toString().equals("complete");
                 });
         } catch (TimeoutException exception) {
-            log.debug(String.format("Unable to wait for page to complete:  %s", exception));
+            log.debug(String.format("Unable to wait for page to complete with:  %s", exception));
         } finally {
             log.info(LOG_TEMPLATE_1,
                 "Wait for page is loaded", getTimeDifference(startTime), driverWrapper.getCurrentUrl());
@@ -50,6 +54,27 @@ public class WebDriverHelper {
         } finally {
             log.info(LOG_TEMPLATE_1,
                 "Wait for concrete title", getTimeDifference(startTime), driverWrapper.getCurrentUrl());
+        }
+    }
+
+    public String getCookie() {
+        JavascriptExecutor js = (JavascriptExecutor) driverWrapper.getDriver();
+        return (String) js.executeScript("return document.cookie");
+    }
+
+    public void waitForElement(By by) {
+        long startTime = System.currentTimeMillis();
+        try {
+            new FluentWait<>(driverWrapper.getDriver())
+                .withTimeout(Duration.ofSeconds(5L))
+                .pollingEvery(Duration.ofMillis(500L))
+                .ignoring(NoSuchElementException.class)
+                .until(driver -> driver.findElement(by));
+        } catch (TimeoutException exception) {
+            log.debug(String.format("Unable to wait for element:  %s", by));
+        } finally {
+            log.info(LOG_TEMPLATE_1,
+                "Wait for element", getTimeDifference(startTime), driverWrapper.getCurrentUrl());
         }
     }
 
