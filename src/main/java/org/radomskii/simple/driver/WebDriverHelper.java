@@ -7,7 +7,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -28,7 +30,7 @@ public class WebDriverHelper {
         long startTime = System.currentTimeMillis();
         try {
             new FluentWait<>(driverWrapper.getDriver())
-                .withTimeout(Duration.ofSeconds(10L))
+                .withTimeout(Duration.ofSeconds(5L))
                 .pollingEvery(Duration.ofMillis(500L))
                 .until(driver -> {
                     JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -46,8 +48,8 @@ public class WebDriverHelper {
         long startTime = System.currentTimeMillis();
         try {
             new FluentWait<>(driverWrapper.getDriver())
-                .withTimeout(Duration.ofSeconds(10L))
-                .pollingEvery(Duration.ofSeconds(1L))
+                .withTimeout(Duration.ofSeconds(4L))
+                .pollingEvery(Duration.ofMillis(500L))
                 .until(driver -> driver.getCurrentUrl().equals(title));
         } catch (TimeoutException exception) {
             log.debug(String.format("Unable to wait for page with title:  %s", title));
@@ -66,7 +68,7 @@ public class WebDriverHelper {
         long startTime = System.currentTimeMillis();
         try {
             new FluentWait<>(driverWrapper.getDriver())
-                .withTimeout(Duration.ofSeconds(5L))
+                .withTimeout(Duration.ofSeconds(4L))
                 .pollingEvery(Duration.ofMillis(500L))
                 .ignoring(NoSuchElementException.class)
                 .until(driver -> driver.findElement(by));
@@ -75,6 +77,19 @@ public class WebDriverHelper {
         } finally {
             log.info(LOG_TEMPLATE_1,
                 "Wait for element", getTimeDifference(startTime), driverWrapper.getCurrentUrl());
+        }
+    }
+
+    public void click(WebElement element) {
+        long startTime = System.currentTimeMillis();
+        try {
+            new WebDriverWait(driverWrapper.getDriver(), Duration.ofSeconds(4))
+                .until(ExpectedConditions.elementToBeClickable(element));
+        } catch (TimeoutException exception) {
+            log.debug(String.format("Unable to wait for element is clickable:  %s", exception));
+        } finally {
+            log.info(LOG_TEMPLATE_1,
+                "Wait for element is clickable", getTimeDifference(startTime), driverWrapper.getCurrentUrl());
         }
     }
 

@@ -52,7 +52,10 @@ public class WebDriverWrapper implements WebDriver {
         log.debug("Finding elements: " + by);
         long startTime = System.currentTimeMillis();
         try {
-            return driver.findElements(by);
+            return new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofMillis(500))
+                .until(driver -> driver.findElements(by));
         } finally {
             log.info(LOG_TEMPLATE_3, by, getTimeDifference(startTime), getCurrentUrl());
         }
@@ -82,7 +85,7 @@ public class WebDriverWrapper implements WebDriver {
         log.debug("Closing browser ... " + driver.toString());
         long startTime = System.currentTimeMillis();
         try {
-            driver.quit();
+            driver.close();
         } finally {
             log.info(LOG_TEMPLATE_1, "Close driver", getTimeDifference(startTime));
         }

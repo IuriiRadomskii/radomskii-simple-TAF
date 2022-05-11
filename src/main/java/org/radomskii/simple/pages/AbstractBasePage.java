@@ -31,5 +31,4 @@ public abstract class AbstractBasePage {
         log.debug("Initialize: " + getClass().getName());
         PageFactory.initElements(driverWrapper, this);
     }
-
 }
