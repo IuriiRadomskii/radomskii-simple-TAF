@@ -1,5 +1,6 @@
 package org.radomskii.simple.steps;
 
+import org.radomskii.simple.pages.BoardsPage;
 import org.radomskii.simple.pages.login.AtlassianLoginPage;
 import org.radomskii.simple.pages.login.TrelloLoginPage;
 import org.radomskii.simple.pages.login.TrelloStartPage;
@@ -19,5 +20,9 @@ public class BaseStep {
     @Autowired
     @Lazy
     protected AtlassianLoginPage atlassianLoginPage;
+
+    @Autowired
+    @Lazy
+    protected BoardsPage boardsPage;
 
 }

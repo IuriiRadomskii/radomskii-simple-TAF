@@ -9,16 +9,11 @@ public class TrelloSteps extends BaseStep {
 
     public void openTrello() {
         trelloStartPage.openTrello();
-
     }
 
     public void loginOn() {
         trelloStartPage.clickLogInButton();
         trelloLoginPage.sendUserName();
         atlassianLoginPage.sendPassword();
-    }
-
-    public String getCookie() {
-        return "";
     }
 }

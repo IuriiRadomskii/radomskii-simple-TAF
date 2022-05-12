@@ -1,8 +1,10 @@
 package org.radomskii.simple.pages.login;
 
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
+
+import com.codeborne.selenide.SelenideElement;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.radomskii.simple.pages.AbstractBasePage;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -12,17 +14,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class TrelloStartPage extends AbstractBasePage {
 
-    @FindBy(xpath = "//a[@href='/login']")
-    private WebElement logInButton;
-
-    /*@PostConstruct
-    private void init() {
-        PageFactory.initElements(driverWrapper, this);
-    }*/
+    private SelenideElement logInButton = $x("//a[@href='/login']");
 
     public void openTrello() {
-        driverWrapper.get(BASE_URI);
-        driverHelper.waitForPageIsLoaded();
+        open("https://trello.com");
     }
 
     public void clickLogInButton() {

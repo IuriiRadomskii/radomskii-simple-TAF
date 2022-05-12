@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Import;
 
 @Slf4j
 @Configuration
-@Import({WebDriverConfig.class})
 @ComponentScan(basePackages = "org.radomskii.simple")
 public class TestConfig {
 

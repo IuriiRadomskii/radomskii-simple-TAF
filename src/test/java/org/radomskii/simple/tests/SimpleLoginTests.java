@@ -1,7 +1,8 @@
 package org.radomskii.simple.tests;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
 import org.radomskii.simple.config.TestConfig;
 import org.springframework.test.annotation.DirtiesContext;
@@ -16,13 +17,6 @@ public class SimpleLoginTests extends BaseTest {
     public void positiveLoginTest() {
         steps.openTrello();
         steps.loginOn();
-        assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Boards | Trello");
+        $("div#header").shouldBe(Condition.visible);
     }
-
-    //@Test
-    //public void negativeLoginTest() {
-    //    steps.openTrello();
-    //    steps.loginOn();
-    //    assertThat(driverWrapper.getTitle()).as("Page title incorrect").isEqualTo("Boards | Trello");
-    //}
 }

@@ -1,9 +1,10 @@
 package org.radomskii.simple.pages.login;
 
+import static com.codeborne.selenide.Selenide.$;
+
+import com.codeborne.selenide.SelenideElement;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.radomskii.simple.pages.AbstractBasePage;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -13,23 +14,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class AtlassianLoginPage extends AbstractBasePage {
 
-    @FindBy(id = "password")
-    private WebElement passwordInput;
+    private SelenideElement passwordInput = $(By.id("password"));
 
-    @FindBy(id ="login-submit")
-    private WebElement submitButton;
-
-    private By trelloHeader = By.id("header");
-
-    /*@PostConstruct
-    private void init() {
-        PageFactory.initElements(driverWrapper, this);
-    }*/
+    private SelenideElement submitButton = $(By.id("login-submit"));
+    ;
 
     public void sendPassword() {
         passwordInput.sendKeys(env.getProperty("trello.password"));
         submitButton.click();
-        driverHelper.waitForElement(trelloHeader);
     }
-
 }
