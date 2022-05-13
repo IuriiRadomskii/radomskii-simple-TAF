@@ -17,6 +17,6 @@ public class SimpleLoginTests extends BaseTest {
     public void positiveLoginTest() {
         steps.openTrello();
         steps.loginOn();
-        $("div#header").shouldBe(Condition.visible);
+        assertionSteps.assertLoggedIn();
     }
 }
