@@ -1,7 +1,5 @@
 package org.radomskii.simple.pages;
 
-import static com.codeborne.selenide.Selenide.title;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,5 +13,4 @@ public abstract class AbstractBasePage {
 
     @Autowired
     protected Environment env;
-
 }

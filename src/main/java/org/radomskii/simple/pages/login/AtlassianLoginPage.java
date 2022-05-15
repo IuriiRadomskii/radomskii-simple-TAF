@@ -17,7 +17,6 @@ public class AtlassianLoginPage extends AbstractBasePage {
     private SelenideElement passwordInput = $(By.id("password"));
 
     private SelenideElement submitButton = $(By.id("login-submit"));
-    ;
 
     public void sendPassword() {
         passwordInput.sendKeys(env.getProperty("trello.password"));

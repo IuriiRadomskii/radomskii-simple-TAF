@@ -3,6 +3,7 @@ package org.radomskii.simple.pages.login;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import lombok.extern.slf4j.Slf4j;
 import org.radomskii.simple.pages.AbstractBasePage;
@@ -17,7 +18,7 @@ public class TrelloStartPage extends AbstractBasePage {
     private SelenideElement logInButton = $x("//a[@href='/login']");
 
     public void openTrello() {
-        open("https://trello.com");
+        open(BASE_URI);
     }
 
     public void clickLogInButton() {
