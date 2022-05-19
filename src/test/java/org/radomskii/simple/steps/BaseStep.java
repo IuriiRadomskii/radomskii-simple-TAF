@@ -4,6 +4,7 @@ import org.radomskii.simple.pages.BoardsPage;
 import org.radomskii.simple.pages.login.AtlassianLoginPage;
 import org.radomskii.simple.pages.login.TrelloLoginPage;
 import org.radomskii.simple.pages.login.TrelloStartPage;
+import org.radomskii.simple.pages.login.sideLoginResources.LoginWithGooglePage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
@@ -25,4 +26,7 @@ public class BaseStep {
     @Lazy
     protected BoardsPage boardsPage;
 
+    @Autowired
+    @Lazy
+    protected LoginWithGooglePage loginWithGooglePage;
 }

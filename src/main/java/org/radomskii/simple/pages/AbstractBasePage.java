@@ -1,11 +1,11 @@
 package org.radomskii.simple.pages;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 
-@Slf4j
+@Getter
 public abstract class AbstractBasePage {
 
     @Value("${baseUri}")

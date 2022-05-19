@@ -27,7 +27,7 @@ public class BaseTest {
 
     @BeforeAll
     public void setup() {
-        Configuration.browser = CustomFirefoxFactory.class.getName();
+        Configuration.browser = CustomChromeFactory.class.getName();
         Configuration.timeout = 8000L;
         Configuration.pollingInterval = 500L;
         Configuration.headless = false;

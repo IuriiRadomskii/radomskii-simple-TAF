@@ -1,5 +1,7 @@
 package org.radomskii.simple.steps;
 
+import static com.codeborne.selenide.Selenide.page;
+
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -15,5 +17,13 @@ public class TrelloSteps extends BaseStep {
         trelloStartPage.clickLogInButton();
         trelloLoginPage.sendUserName();
         atlassianLoginPage.sendPassword();
+    }
+
+    public void clickLogInButton() {
+        trelloStartPage.clickLogInButton();
+    }
+
+    public void clickContinueWithGoogle() {
+        trelloLoginPage.clickContinueWithGoogle();
     }
 }
